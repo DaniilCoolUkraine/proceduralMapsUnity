@@ -4,6 +4,10 @@ using UnityEngine.Tilemaps;
 public class GameController : MonoBehaviour
 {
     private NoiseGenerator _noiseGenerator;
+    private CellularAutomata _cellularAutomata;
+    
+    private TileBase floorTile;
+    private TileBase wallTile;
 
     //tilemap to apply noise
     [SerializeField] private Tilemap levelMap;
@@ -14,21 +18,30 @@ public class GameController : MonoBehaviour
     
     //density of walls
     [SerializeField] private int density;
-    
+
     //awake to get noise generator
     private void Awake()
     {
         _noiseGenerator = gameObject.GetComponent<NoiseGenerator>();
+        _cellularAutomata = gameObject.GetComponent<CellularAutomata>();
+
+        floorTile = _noiseGenerator.floorTile;
+        wallTile = _noiseGenerator.wallTile;
     }
 
     void Start()
     {
+        (height, width) = (width, height);
         DrawNoise();
     }
 
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Debug.Log(levelMap.WorldToCell(pos));
+        }
     }
 
     //function to draw noise tiles on map
@@ -43,9 +56,14 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < width; j++)
             {
                 //copy tiles from noise to map and shift it to the center
-                levelMap.SetTile(new Vector3Int(i - height / 2, j - width / 2, 0), tempTilebaseArray[i, j]);
+                levelMap.SetTile(new Vector3Int(i, j, 0), tempTilebaseArray[i, j]);
             }
         }
+    }
+
+    public void ApplyButton()
+    {
+        _cellularAutomata.ApplyCellularAutomata(levelMap, 1, height, width, floorTile, wallTile);
     }
     
 }

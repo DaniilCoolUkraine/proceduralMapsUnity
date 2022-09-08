@@ -5,8 +5,8 @@ public class NoiseGenerator : MonoBehaviour
 {
     //here we assign two tileBase
     //it will be wall and floor tiles
-    [SerializeField] private TileBase floorTile;
-    [SerializeField] private TileBase wallTile;
+    public TileBase floorTile;
+    public TileBase wallTile;
     
     //create a function, it takes density of noise and size of level map
     public TileBase[,] MakeNoiseMap(int density, int height, int width)

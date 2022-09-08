@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 912874616}
   - component: {fileID: 912874617}
   - component: {fileID: 912874615}
+  - component: {fileID: 912874618}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -265,9 +266,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelMap: {fileID: 1447742424}
-  height: 100
-  width: 50
+  height: 50
+  width: 100
   density: 55
+--- !u!114 &912874618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912874614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c2c3c690948004cb51d32fc2b53045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelMap: {fileID: 1447742424}
 --- !u!1 &1447742421
 GameObject:
   m_ObjectHideFlags: 0
